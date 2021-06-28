@@ -1,0 +1,438 @@
+---
+swagger: "2.0"
+info:
+  description: "Api Documentation"
+  version: "1.0"
+  title: "Api Documentation"
+  termsOfService: "urn:tos"
+  contact: {}
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0"
+host: "localhost:8081"
+basePath: "/"
+tags:
+- name: "courses"
+  description: "Courses"
+- name: "subject"
+  description: "Subject"
+paths:
+  /courses:
+    get:
+      tags:
+      - "courses"
+      summary: "Find all courses"
+      operationId: "listCoursesUsingGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Course"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "CoursesController"
+    post:
+      tags:
+      - "courses"
+      summary: "Add a course"
+      operationId: "addCourseUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "newCourseDTO"
+        description: "newCourseDTO"
+        required: true
+        schema:
+          $ref: "#/definitions/Course"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Course"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "CoursesController"
+  /courses/{id}:
+    get:
+      tags:
+      - "courses"
+      summary: "Find a course by id"
+      operationId: "getCourseUsingGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Course"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "CoursesController"
+    put:
+      tags:
+      - "courses"
+      summary: "Update a course by id"
+      operationId: "updateCourseUsingPUT"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      - in: "body"
+        name: "title"
+        description: "title"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Course"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "CoursesController"
+    delete:
+      tags:
+      - "courses"
+      summary: "Delete a course by id"
+      operationId: "deleteCourseUsingDELETE"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Course"
+        "204":
+          description: "No Content"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+      deprecated: false
+      x-swagger-router-controller: "CoursesController"
+  /courses/{id}/subjects:
+    get:
+      tags:
+      - "courses"
+      summary: "Find all course subjects by id"
+      operationId: "getCourseSubjectsUsingGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subject"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "CoursesController"
+  /subjects:
+    get:
+      tags:
+      - "subject"
+      summary: "Find all subjects"
+      operationId: "listSubjectsUsingGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Subject"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "SubjectController"
+    post:
+      tags:
+      - "subject"
+      summary: "Add a subject"
+      operationId: "addCourseUsingPOST_1"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "newSubjectDTO"
+        description: "newSubjectDTO"
+        required: true
+        schema:
+          $ref: "#/definitions/Subject"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subject"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "SubjectController"
+  /subjects/{id}:
+    get:
+      tags:
+      - "subject"
+      summary: "Find a subject by id"
+      operationId: "getSubjectUsingGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subject"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "SubjectController"
+    put:
+      tags:
+      - "subject"
+      summary: "Update a subject"
+      operationId: "updateSubjectUsingPUT_1"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      - in: "body"
+        name: "title"
+        description: "title"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subject"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "SubjectController"
+    delete:
+      tags:
+      - "subject"
+      summary: "Delete a subject"
+      operationId: "deleteSubjectUsingDELETE"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Subject"
+        "204":
+          description: "No Content"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+      deprecated: false
+      x-swagger-router-controller: "SubjectController"
+  /subjects/{id}/lessons:
+    get:
+      tags:
+      - "subject"
+      summary: "Find all subject lessons by id"
+      operationId: "getSubjectLessonsUsingGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Lesson"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+      x-swagger-router-controller: "SubjectController"
+definitions:
+  Course:
+    type: "object"
+    properties:
+      description:
+        type: "string"
+      subjects:
+        type: "array"
+        items:
+          $ref: "#/definitions/Subject"
+      title:
+        type: "string"
+    title: "Course"
+    example:
+      subjects:
+      - description: "description"
+        id: 6
+        title: "title"
+        lessons:
+        - name: "name"
+          id: 1
+        - name: "name"
+          id: 1
+      - description: "description"
+        id: 6
+        title: "title"
+        lessons:
+        - name: "name"
+          id: 1
+        - name: "name"
+          id: 1
+      description: "description"
+      id: 0
+      title: "title"
+  Lesson:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+    title: "Lesson"
+    example:
+      name: "name"
+      id: 1
+  Subject:
+    type: "object"
+    properties:
+      description:
+        type: "string"
+      id:
+        type: "integer"
+        format: "int32"
+      lessons:
+        type: "array"
+        items:
+          $ref: "#/definitions/Lesson"
+      title:
+        type: "string"
+    title: "Subject"
+    example:
+      description: "description"
+      id: 6
+      title: "title"
+      lessons:
+      - name: "name"
+        id: 1
+      - name: "name"
+        id: 1
