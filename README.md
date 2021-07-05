@@ -1,6 +1,6 @@
 # Link AWS console - Grupo 4
 
-http://3.138.169.204:8081/docs
+http://3.133.93.219:8081/docs
 
 # Installation
 
